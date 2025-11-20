@@ -1,6 +1,7 @@
 import React from 'react';
-import {TouchableOpacity, Text, ActivityIndicator, ViewStyle, TextStyle} from 'react-native';
-import {useTheme} from '../../contexts/ThemeContext';
+import { TouchableOpacity, Text, ActivityIndicator, ViewStyle, TextStyle } from 'react-native';
+import { useTheme } from '../../contexts/ThemeContext';
+import { Ionicons } from '@expo/vector-icons';
 
 interface ButtonProps {
     title: string;
@@ -11,21 +12,22 @@ interface ButtonProps {
     loading?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
+    iconName?: string;
     style?: ViewStyle; // Add this line
 }
 
 export function Button({
-                           title,
-                           onPress,
-                           variant = 'primary',
-                           size = 'md',
-                           disabled = false,
-                           loading = false,
-                           fullWidth = false,
-                           icon,
-                           style
-                       }: ButtonProps) {
-    const {colors, isDark} = useTheme();
+    title,
+    onPress,
+    variant = 'primary',
+    size = 'md',
+    disabled = false,
+    loading = false,
+    fullWidth = false,
+    iconName,
+    style
+}: ButtonProps) {
+    const { colors, isDark } = useTheme();
 
     const getVariantStyles = (): ViewStyle => {
         const base: ViewStyle = {
@@ -46,9 +48,9 @@ export function Button({
 
         switch (variant) {
             case 'primary':
-                return {...base, backgroundColor: colors.primary};
+                return { ...base, backgroundColor: colors.primary };
             case 'secondary':
-                return {...base, backgroundColor: colors.secondary};
+                return { ...base, backgroundColor: colors.secondary };
             case 'outline':
                 return {
                     ...base,
@@ -62,22 +64,22 @@ export function Button({
                     backgroundColor: isDark ? colors.surfaceSecondary : colors.backgroundSecondary,
                 };
             case 'danger':
-                return {...base, backgroundColor: colors.error};
+                return { ...base, backgroundColor: colors.error };
             default:
-                return {...base, backgroundColor: colors.primary};
+                return { ...base, backgroundColor: colors.primary };
         }
     };
 
     const getSizeStyles = (): ViewStyle => {
         switch (size) {
             case 'sm':
-                return {paddingHorizontal: 16, paddingVertical: 8};
+                return { paddingHorizontal: 16, paddingVertical: 8 };
             case 'md':
-                return {paddingHorizontal: 20, paddingVertical: 12};
+                return { paddingHorizontal: 20, paddingVertical: 12 };
             case 'lg':
-                return {paddingHorizontal: 24, paddingVertical: 16};
+                return { paddingHorizontal: 24, paddingVertical: 16 };
             default:
-                return {paddingHorizontal: 20, paddingVertical: 12};
+                return { paddingHorizontal: 20, paddingVertical: 12 };
         }
     };
 
@@ -95,13 +97,13 @@ export function Button({
 
         switch (size) {
             case 'sm':
-                return {...base, fontSize: 14, color: textColor};
+                return { ...base, fontSize: 14, color: textColor };
             case 'md':
-                return {...base, fontSize: 16, color: textColor};
+                return { ...base, fontSize: 16, color: textColor };
             case 'lg':
-                return {...base, fontSize: 18, color: textColor};
+                return { ...base, fontSize: 18, color: textColor };
             default:
-                return {...base, fontSize: 16, color: textColor};
+                return { ...base, fontSize: 16, color: textColor };
         }
     };
 
@@ -118,10 +120,14 @@ export function Button({
             activeOpacity={0.7}
         >
             {loading ? (
-                <ActivityIndicator color={variant === 'outline' || variant === 'ghost' ? colors.primary : '#ffffff'}/>
+                <ActivityIndicator color={variant === 'outline' || variant === 'ghost' ? colors.primary : '#ffffff'} />
             ) : (
                 <>
-                    {icon}
+                    <Ionicons 
+                        name={iconName}
+                        size={24}
+                        color={'white'}
+                    />
                     <Text style={getTextStyles()}>{title}</Text>
                 </>
             )}

@@ -12,12 +12,12 @@ interface CardProps {
 }
 
 export function Card({
-                         children,
-                         variant = 'elevated',
-                         padding = 'md',
-                         onPress,
-                         style,
-                     }: CardProps) {
+    children,
+    variant = 'elevated',
+    padding = 'md',
+    onPress,
+    style,
+}: CardProps) {
     const { colors } = useTheme();
 
     const getVariantStyles = (): ViewStyle => {
