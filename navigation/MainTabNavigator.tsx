@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../contexts/ThemeContext';
-import { HomeScreen } from '../screens/home/HomeScreen';
 import { WorkoutsScreen } from '../screens/workouts/WorkoutsScreen';
 import { PlansScreen } from '../screens/plans/PlansScreen';
 import { ProgressScreen } from '../screens/progress/ProgressScreen';
@@ -32,14 +31,14 @@ export function MainTabNavigator() {
                     position: 'absolute',
                     overflow: 'hidden',
                     elevation: 0,
-                    borderTopWidth: 0,        // Remove top border
-                    borderWidth: 0,           // Remove all borders
-                    shadowOpacity: 0,         // Remove iOS shadow
-                    shadowOffset: {           // Remove iOS shadow
+                    borderTopWidth: 0,
+                    borderWidth: 0,   
+                    shadowOpacity: 0, 
+                    shadowOffset: {   
                         width: 0,
                         height: 0,
                     },
-                    shadowRadius: 0,          // Remove iOS shadow
+                    shadowRadius: 0,  
                 },
                 tabBarActiveTintColor: colors.secondary,
                 tabBarInactiveTintColor: colors.textTertiary,
@@ -50,17 +49,7 @@ export function MainTabNavigator() {
             }}
         >
             <Tab.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="home" size={size} color={color} />
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name="Workouts"
+                name="Train"
                 component={WorkoutsScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
@@ -70,7 +59,7 @@ export function MainTabNavigator() {
             />
 
             <Tab.Screen
-                name="Plans"
+                name="Plan"
                 component={PlansScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
