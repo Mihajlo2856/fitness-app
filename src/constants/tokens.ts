@@ -1,72 +1,79 @@
 export const colors = {
-    // Light theme
     light: {
-        primary: '#3b82f6',        // Blue
-        primaryDark: '#2563eb',
-        primaryLight: '#60a5fa',
+        // Primary: Calm Slate Blue - professional, not harsh
+        primary: '#4F46E5',        // Indigo
+        primaryDark: '#4338CA',
+        primaryLight: '#6366F1',
 
-        secondary: '#8b5cf6',      // Purple
-        secondaryDark: '#7c3aed',
-        secondaryLight: '#a78bfa',
+        // Secondary: Fresh Teal - energetic but soothing
+        secondary: '#14B8A6',      // Teal
+        secondaryDark: '#0F766E',
+        secondaryLight: '#2DD4BF',
 
-        success: '#10b981',
-        warning: '#f59e0b',
-        error: '#ef4444',
-        info: '#06b6d4',
+        // Status colors - balanced, not screaming
+        success: '#059669',        // Emerald
+        warning: '#D97706',        // Amber
+        error: '#DC2626',          // Red
+        info: '#0284C7',           // Sky blue
 
-        background: '#ffffff',
-        backgroundSecondary: '#f8fafc',
-        backgroundTertiary: '#f1f5f9',
+        // Backgrounds: Soft, not pure white (easier on eyes)
+        background: '#FAFAFA',     // Very light gray
+        backgroundSecondary: '#F4F4F5',
+        backgroundTertiary: '#E4E4E7',
 
-        surface: '#ffffff',
-        surfaceSecondary: '#f8fafc',
+        surface: '#FFFFFF',
+        surfaceSecondary: '#F1EFEF',
 
-        text: '#0f172a',
-        textSecondary: '#475569',
-        textTertiary: '#94a3b8',
-        textDisabled: '#cbd5e1',
+        // Text: High contrast but not pure black
+        text: '#18181B',           // Near black
+        textSecondary: '#52525B',  // Medium gray
+        textTertiary: '#A1A1AA',   // Light gray
+        textDisabled: '#D4D4D8',   // Very light
 
-        border: '#e2e8f0',
-        borderLight: '#f1f5f9',
-        borderDark: '#cbd5e1',
+        // Borders: Subtle, unobtrusive
+        border: '#E4E4E7',
+        borderLight: '#F4F4F5',
+        borderDark: '#D4D4D8',
 
-        overlay: 'rgba(0, 0, 0, 0.5)',
+        overlay: 'rgba(0, 0, 0, 0.4)',
     },
-
-    // Dark theme - Refined Midnight Gray with Blue/Purple
     dark: {
-        primary: '#6366f1',        // Indigo 500 (blue-purple)
-        primaryDark: '#4f46e5',    // Indigo 600
-        primaryLight: '#818cf8',   // Indigo 400
+        // Primary: Rich Indigo - sophisticated in dark mode
+        primary: '#6366F1',
+        primaryDark: '#4F46E5',
+        primaryLight: '#818CF8',
 
-        secondary: '#8b5cf6',      // Violet 500 (purple)
-        secondaryDark: '#7c3aed',  // Violet 600
-        secondaryLight: '#a78bfa', // Violet 400
+        // Secondary: Vibrant Teal - pops nicely in dark
+        secondary: '#2DD4BF',
+        secondaryDark: '#14B8A6',
+        secondaryLight: '#5EEAD4',
 
-        success: '#10b981',
-        warning: '#f59e0b',
-        error: '#ef4444',
-        info: '#06b6d4',
+        // Status colors - slightly brighter for dark mode visibility
+        success: '#10B981',
+        warning: '#F59E0B',
+        error: '#EF4444',
+        info: '#06B6D4',
 
-        // Neutral gray backgrounds (not black, not blue-tinted)
-        background: '#121212',           // True dark gray
-        backgroundSecondary: '#1e1e1e',  // Slightly lighter gray
-        backgroundTertiary: '#2a2a2a',   // Medium gray
+        // Backgrounds: True dark, comfortable
+        background: '#0A0A0A',     // Near black
+        backgroundSecondary: '#141414',
+        backgroundTertiary: '#1F1F1F',
 
-        surface: '#1e1e1e',
-        surfaceSecondary: '#2a2a2a',
+        surface: '#141414',
+        surfaceSecondary: '#1F1F1F',
 
-        // Text - neutral grays
-        text: '#f5f5f5',           // Very light gray
-        textSecondary: '#b3b3b3',  // Medium light gray
-        textTertiary: '#808080',   // Medium gray
-        textDisabled: '#5c5c5c',   // Darker gray
+        // Text: Soft whites, not harsh
+        text: '#FAFAFA',           // Soft white
+        textSecondary: '#A1A1AA',  // Medium gray
+        textTertiary: '#71717A',   // Darker gray
+        textDisabled: '#3F3F46',   // Very dark
 
-        border: '#2a2a2a',
-        borderLight: '#3d3d3d',
-        borderDark: '#1e1e1e',
+        // Borders: Subtle in dark mode
+        border: '#27272A',
+        borderLight: '#3F3F46',
+        borderDark: '#18181B',
 
-        overlay: 'rgba(0, 0, 0, 0.85)',
+        overlay: 'rgba(0, 0, 0, 0.75)',
     },
 };
 
@@ -125,30 +132,35 @@ export const shadows = {
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.05,
         shadowRadius: 2,
-        elevation: 1,
+        elevation: 2,
     },
     md: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
-        elevation: 3,
+        elevation: 4,
     },
     lg: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
+        shadowOpacity: 0.12,
         shadowRadius: 8,
-        elevation: 5,
+        elevation: 6,
     },
     xl: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.15,
         shadowRadius: 16,
-        elevation: 8,
+        elevation: 10,
     },
 };
+
+export const dividers = {
+    light: '#E4E4E7',  // Soft gray - matches your border color
+    dark: '#27272A',   // Dark gray - subtle in dark mode
+}
 
 export const tokens = {
     colors,
@@ -156,4 +168,5 @@ export const tokens = {
     borderRadius,
     typography,
     shadows,
+    dividers,
 };

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../contexts/ThemeContext';
 import colors from "tailwindcss/colors";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import Write from './common/Write';
 
 export function ProfileButton() {
     const navigation = useNavigation();
@@ -45,7 +46,9 @@ export function ProfileButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Ionicons name="hammer-outline" size={24} color={colors.primary} />
+            <Write>
+                A
+            </Write>
         </TouchableOpacity>
     );
 }

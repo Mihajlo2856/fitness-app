@@ -40,8 +40,8 @@ export function MainTabNavigator() {
                     },
                     shadowRadius: 0,  
                 },
-                tabBarActiveTintColor: colors.secondary,
-                tabBarInactiveTintColor: colors.textTertiary,
+                tabBarActiveTintColor: colors.primaryLight,
+                tabBarInactiveTintColor: colors.primaryDark,
                 tabBarLabelStyle: {
                     fontSize: 12,
                     fontWeight: '600',

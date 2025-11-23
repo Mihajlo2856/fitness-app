@@ -4,45 +4,45 @@ import { useTheme } from '../../contexts/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 
 interface ButtonProps {
-    title: string;
     onPress: () => void;
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
     size?: 'sm' | 'md' | 'lg';
     disabled?: boolean;
     loading?: boolean;
-    fullWidth?: boolean;
-    icon?: React.ReactNode;
-    iconName?: string;
-    style?: ViewStyle; // Add this line
+    fullWidth?: boolean; // Default false - button wraps to content
+    iconName?: keyof typeof Ionicons.glyphMap;
+    style?: ViewStyle;
+    children?: React.ReactNode;
 }
 
 export function Button({
-    title,
     onPress,
     variant = 'primary',
     size = 'md',
     disabled = false,
     loading = false,
-    fullWidth = false,
+    fullWidth = false, // Explicit default: wraps to content
     iconName,
-    style
+    style,
+    children,
 }: ButtonProps) {
-    const { colors, isDark } = useTheme();
+    const { colors } = useTheme();
 
     const getVariantStyles = (): ViewStyle => {
         const base: ViewStyle = {
-            borderRadius: 12,
+            borderRadius: 48,
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
             gap: 8,
+            alignSelf: fullWidth ? 'stretch' : 'flex-start', // Key line: wraps to content by default
         };
 
         if (disabled || loading) {
             return {
                 ...base,
-                backgroundColor: colors.borderLight,
-                opacity: 0.6,
+                backgroundColor: colors.surfaceSecondary,
+                opacity: 1,
             };
         }
 
@@ -61,7 +61,7 @@ export function Button({
             case 'ghost':
                 return {
                     ...base,
-                    backgroundColor: isDark ? colors.surfaceSecondary : colors.backgroundSecondary,
+                    backgroundColor: colors.backgroundSecondary,
                 };
             case 'danger':
                 return { ...base, backgroundColor: colors.error };
@@ -83,27 +83,44 @@ export function Button({
         }
     };
 
+    const getTextColor = (): string => {
+        if (variant === 'outline') return colors.primary;
+        if (variant === 'ghost') return colors.text;
+        return '#FFFFFF';
+    };
+
+    const getIconColor = (): string => {
+        return getTextColor();
+    };
+
     const getTextStyles = (): TextStyle => {
         const base: TextStyle = {
             fontWeight: '600',
+            color: getTextColor(),
         };
-
-        const textColor =
-            variant === 'outline'
-                ? colors.primary
-                : variant === 'ghost'
-                    ? colors.text
-                    : '#ffffff';
 
         switch (size) {
             case 'sm':
-                return { ...base, fontSize: 14, color: textColor };
+                return { ...base, fontSize: 14 };
             case 'md':
-                return { ...base, fontSize: 16, color: textColor };
+                return { ...base, fontSize: 16 };
             case 'lg':
-                return { ...base, fontSize: 18, color: textColor };
+                return { ...base, fontSize: 18 };
             default:
-                return { ...base, fontSize: 16, color: textColor };
+                return { ...base, fontSize: 16 };
+        }
+    };
+
+    const getIconSize = (): number => {
+        switch (size) {
+            case 'sm':
+                return 18;
+            case 'md':
+                return 20;
+            case 'lg':
+                return 24;
+            default:
+                return 20;
         }
     };
 
@@ -114,23 +131,24 @@ export function Button({
             style={[
                 getVariantStyles(),
                 getSizeStyles(),
-                fullWidth && { width: '100%' },
                 style,
             ]}
             activeOpacity={0.7}
         >
             {loading ? (
-                <ActivityIndicator color={variant === 'outline' || variant === 'ghost' ? colors.primary : '#ffffff'} />
+                <ActivityIndicator color={getTextColor()} />
             ) : (
                 <>
-                    <Ionicons 
-                        name={iconName}
-                        size={24}
-                        color={'white'}
-                    />
-                    <Text style={getTextStyles()}>{title}</Text>
+                    {iconName && (
+                        <Ionicons
+                            name={iconName}
+                            size={getIconSize()}
+                            color={getIconColor()}
+                        />
+                    )}
                 </>
             )}
+            {children}
         </TouchableOpacity>
     );
 }

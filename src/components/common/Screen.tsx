@@ -15,12 +15,12 @@ const SAFE_TOP_PADDING = Platform.select({
 });
 
 export function Screen({ children, scrollable = true, style }: ScreenProps) {
-    const { colors, isDark } = useTheme();
+    const { colors, osStatusBar } = useTheme();
 
     return (
         <>
             <StatusBar
-                barStyle={isDark ? 'light-content' : 'dark-content'}
+                barStyle={osStatusBar ? 'light-content' : 'dark-content'}
                 backgroundColor={colors.background}
             />
             <View

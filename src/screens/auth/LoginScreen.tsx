@@ -7,13 +7,17 @@ import { Screen } from '@/components/common/Screen';
 import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import GymIllustration from '@/components/GymIllustration';
+import Write from '@/components/common/Write';
+import { Image } from 'react-native';
+import Divider from '@/components/common/Divider';
 
 export default function LoginScreen({ navigation }: any) {
+    const { colors } = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const { signIn } = useAuth();
-    const { colors } = useTheme();
 
     const handleLogin = async () => {
         if (!email || !password) {
@@ -24,7 +28,6 @@ export default function LoginScreen({ navigation }: any) {
         setLoading(true);
         try {
             await signIn(email, password);
-            // Navigation will happen automatically via auth state change
         } catch (error: any) {
             Alert.alert('Login Failed', error.message);
         } finally {
@@ -39,53 +42,65 @@ export default function LoginScreen({ navigation }: any) {
                 className="flex-1"
             >
                 <View className="flex-1 justify-center px-6">
-                    <Card>
-                        {/* Logo/Title */}
-                        <Text className="mb-8" style={{ fontSize: 28, fontWeight: 'bold', color: colors.text, marginBottom: 8, textAlign: 'center', }}>
-                            Log in
-                        </Text>
+                    {/* Illustration */}
+                    <View className="items-center mb-8">
+                        <Write>
+                            Logo here
+                        </Write>
+                    </View>
 
+                    {/* Title */}
+                    <View className="items-center mb-12">
+                        <Write style={{ fontSize: 36, fontWeight: 'bold', marginBottom: 8 }}>
+                            Welcome Back
+                        </Write>
+                        <Write style={{ fontSize: 16, opacity: 0.6 }}>
+                            Log in to continue your journey
+                        </Write>
+                    </View>
 
-                        {/* Email Input */}
-                        <View className="mb-4">
-                            <Text className="text-slate-300 text-sm font-medium mb-2">Email</Text>
-                            <Input
-                                placeholder="admin@admin.com"
-                                value={email}
-                                onChangeText={setEmail}
-                                autoCapitalize="none"
-                                keyboardType="email-address"
-                                autoComplete="email"
-                            />
-                        </View>
-
-                        {/* Password Input */}
-                        <View className="mb-6">
-                            <Text className="text-slate-300 text-sm font-medium mb-2">Password</Text>
-                            <Input
-                                placeholder="••••••••"
-                                value={password}
-                                onChangeText={setPassword}
-                                secureTextEntry
-                                autoComplete="password"
-                            />
-                        </View>
-
-                        {/* Login Button */}
-                        <Button
-                            title={loading ? 'Logging in...' : 'Log In'}
-                            onPress={handleLogin}
-                            disabled={loading}
+                    {/* Email Input */}
+                    <View className="mb-4">
+                        <Write style={{ fontSize: 14, fontWeight: '500', marginBottom: 8, opacity: 0.8 }}>
+                            Email
+                        </Write>
+                        <Input
+                            placeholder="your@email.com"
+                            value={email}
+                            onChangeText={setEmail}
+                            autoCapitalize="none"
+                            keyboardType="email-address"
+                            autoComplete="email"
                         />
+                    </View>
 
-                        {/* Register Link */}
-                        <View className="flex-row justify-center mt-4">
-                            <Text className="text-slate-400 text-sm">Don't have an account? </Text>
-                            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                                <Text className="text-blue-500 text-sm font-semibold">Sign Up</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </Card>
+                    {/* Password Input */}
+                    <View className="mb-8">
+                        <Write style={{ fontSize: 14, fontWeight: '500', marginBottom: 8, opacity: 0.8 }}>
+                            Password
+                        </Write>
+                        <Input
+                            placeholder="••••••••"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
+                            autoComplete="password"
+                        />
+                    </View>
+
+                    {/* Login Button */}
+                    <Button onPress={handleLogin} fullWidth variant='outline' disabled={loading}>
+                        <Write style={{ color: colors.primary }}>{loading ? 'Logging in...' : 'Log In'}</Write>
+                    </Button>
+
+                    {/* Register Link */}
+                        <Divider></Divider>
+                    <View className="flex-row justify-center">
+                        <Write style={{ fontSize: 14, opacity: 0.6 }}>Don't have an account? </Write>
+                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                            <Write style={{ fontSize: 14, fontWeight: '600', color: colors.primary }}>Sign Up</Write>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
         </Screen>
