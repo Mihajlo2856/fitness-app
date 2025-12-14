@@ -20,11 +20,14 @@ export function MainTabNavigator() {
                 headerShown: false,
                 lazy: false,
                 tabBarStyle: {
-                    backgroundColor: colors.surfaceSecondary,
-                    borderRadius: 48,
-                    width: '92%',
-                    marginLeft: '4%',
-                    marginBottom: 12,
+                    backgroundColor: colors.surface,
+                    borderBottomLeftRadius: 48,
+                    borderBottomRightRadius: 48,
+                    borderTopLeftRadius: 24,
+                    borderTopRightRadius: 24,
+                    width: '95%',
+                    marginLeft: '2.5%',
+                    marginBottom: 10,
                     height: 70,
                     paddingBottom: 8,
                     paddingTop: 8,
@@ -32,16 +35,16 @@ export function MainTabNavigator() {
                     overflow: 'hidden',
                     elevation: 0,
                     borderTopWidth: 0,
-                    borderWidth: 0,   
-                    shadowOpacity: 0, 
-                    shadowOffset: {   
+                    borderWidth: 0,
+                    shadowOpacity: 0,
+                    shadowOffset: {
                         width: 0,
                         height: 0,
                     },
-                    shadowRadius: 0,  
+                    shadowRadius: 0,
                 },
-                tabBarActiveTintColor: colors.primaryLight,
-                tabBarInactiveTintColor: colors.primaryDark,
+                tabBarActiveTintColor: colors.text,
+                tabBarInactiveTintColor: colors.textSecondary,
                 tabBarLabelStyle: {
                     fontSize: 12,
                     fontWeight: '600',
@@ -77,6 +80,8 @@ export function MainTabNavigator() {
                     ),
                 }}
             />
+
+            
         </Tab.Navigator>
         </>
     );

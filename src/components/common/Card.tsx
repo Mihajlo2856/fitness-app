@@ -61,7 +61,7 @@ export function Card({
     };
 
     const cardStyles: ViewStyle = {
-        borderRadius: 12,
+        borderRadius: 36,
         ...getVariantStyles(),
         ...getPaddingStyles(),
         ...style,

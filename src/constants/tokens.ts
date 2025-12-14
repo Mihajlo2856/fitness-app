@@ -1,18 +1,20 @@
 export const colors = {
     light: {
-        // Primary: Calm Slate Blue - professional, not harsh
-        primary: '#4F46E5',        // Indigo
-        primaryDark: '#4338CA',
-        primaryLight: '#6366F1',
+        // Primary: Premium Burnt Orange - sophisticated, energetic
+        primary: '#EA580C',        // Deep Orange
+        primaryDark: '#C2410C',    // Burnt Orange
+        primaryLight: '#F97316',   // Bright Orange
+        gradientPrimary: ['#F97316', '#FB923C', '#FBBF24'] as const, // Orange to Amber
+        gradientSecondary: ['#EA580C', '#DC2626', '#F59E0B'] as const, // Deep Orange to Amber
 
-        // Secondary: Fresh Teal - energetic but soothing
-        secondary: '#14B8A6',      // Teal
-        secondaryDark: '#0F766E',
-        secondaryLight: '#2DD4BF',
+        // Secondary: Rich Amber Gold - premium accent
+        secondary: '#F59E0B',      // Amber
+        secondaryDark: '#D97706',  // Deep Amber
+        secondaryLight: '#FBBF24', // Light Gold
 
         // Status colors - balanced, not screaming
         success: '#059669',        // Emerald
-        warning: '#D97706',        // Amber
+        warning: '#D97706',        // Amber (matches secondary)
         error: '#DC2626',          // Red
         info: '#0284C7',           // Sky blue
 
@@ -26,6 +28,7 @@ export const colors = {
 
         // Text: High contrast but not pure black
         text: '#18181B',           // Near black
+        buttonText: '#FFFFFF',
         textSecondary: '#52525B',  // Medium gray
         textTertiary: '#A1A1AA',   // Light gray
         textDisabled: '#D4D4D8',   // Very light
@@ -38,15 +41,17 @@ export const colors = {
         overlay: 'rgba(0, 0, 0, 0.4)',
     },
     dark: {
-        // Primary: Rich Indigo - sophisticated in dark mode
-        primary: '#6366F1',
-        primaryDark: '#4F46E5',
-        primaryLight: '#818CF8',
+        // Primary: Vibrant Orange - pops beautifully in dark mode
+        primary: '#F97316',        // Bright Orange
+        primaryDark: '#EA580C',    // Deep Orange
+        primaryLight: '#FB923C',   // Light Orange
+        gradientPrimary: ['#F97316', '#FB923C', '#FBBF24'] as const, // Orange to Gold
+        gradientSecondary: ['#FB923C', '#F59E0B', '#EAB308'] as const, // Warm gradient
 
-        // Secondary: Vibrant Teal - pops nicely in dark
-        secondary: '#2DD4BF',
-        secondaryDark: '#14B8A6',
-        secondaryLight: '#5EEAD4',
+        // Secondary: Golden Amber - luxury feel
+        secondary: '#FBBF24',      // Gold
+        secondaryDark: '#F59E0B',  // Amber
+        secondaryLight: '#FCD34D', // Light Gold
 
         // Status colors - slightly brighter for dark mode visibility
         success: '#10B981',
@@ -55,15 +60,16 @@ export const colors = {
         info: '#06B6D4',
 
         // Backgrounds: True dark, comfortable
-        background: '#0A0A0A',     // Near black
+        background: '#1A1919',     // Near black
         backgroundSecondary: '#141414',
         backgroundTertiary: '#1F1F1F',
 
-        surface: '#141414',
+        surface: '#2C2C2C',
         surfaceSecondary: '#1F1F1F',
 
         // Text: Soft whites, not harsh
         text: '#FAFAFA',           // Soft white
+        buttonText: '#FFFFFF',
         textSecondary: '#A1A1AA',  // Medium gray
         textTertiary: '#71717A',   // Darker gray
         textDisabled: '#3F3F46',   // Very dark

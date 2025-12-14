@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-expo-app",
-    "slug": "my-expo-app",
+    "name": "FitTrack+",
+    "slug": "FitTrack+",
     "version": "1.0.0",
     "web": {
       "favicon": "./assets/favicon.png"
@@ -18,7 +18,11 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FAFAFA",
+      "dark": {
+        "image": "./assets/splash.png",
+        "backgroundColor": "#1A1919"
+      }
     },
     "assetBundlePatterns": [
       "**/*"

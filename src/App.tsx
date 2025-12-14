@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useColorScheme } from 'nativewind';
-// Contexts
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-
-// Navigation & Screens
 import { MainTabNavigator } from './navigation/MainTabNavigator';
 import { ProfileScreen } from "./screens/profile/ProfileScreen";
 import LoginScreen from './screens/auth/LoginScreen';
@@ -16,10 +12,11 @@ import RegisterScreen from './screens/auth/RegisterScreen';
 import "../global.css"
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
+import { ActiveWorkoutProvider } from './contexts/ActiveWorkoutContext';
+import ActiveWorkoutScreen from './screens/workouts/ActiveWorkoutScreen';
 
 const Stack = createNativeStackNavigator();
 
-// Main App Stack (when logged in)
 function MainStack() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -33,11 +30,18 @@ function MainStack() {
                     presentation: 'modal',
                 }}
             />
+            <Stack.Screen
+                name="ActiveWorkout"
+                component={ActiveWorkoutScreen}
+                options={{
+                    presentation: 'modal',
+                    headerShown: false,
+                }}
+            />
         </Stack.Navigator>
-    );
+    )
 }
 
-// when not logged in
 function RootNavigator() {
     const { user, loading } = useAuth();
 
@@ -58,36 +62,12 @@ function RootNavigator() {
                     <Stack.Screen name="Login" component={LoginScreen} />
                     <Stack.Screen name="Register" component={RegisterScreen} />
                 </>
-            )}
-        </Stack.Navigator>
+            )
+            }
+        </Stack.Navigator >
     );
 }
-
 SplashScreen.preventAutoHideAsync();
-
-function AppContent() {
-  const { colorScheme } = useColorScheme();
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-
-    if (colorScheme) {
-      setIsReady(true);
-    }
-  }, [colorScheme]);
-
-  if (!isReady) {
-    return <View style={{ flex: 1, backgroundColor: '#000' }} />; // Match your dark theme
-  }
-
-  return (
-    <AuthProvider>
-      <NavigationContainer>
-        <MainTabNavigator />
-      </NavigationContainer>
-    </AuthProvider>
-  );
-}
 
 export default function App() {
     const [fontsLoaded, fontError] = useFonts({
@@ -102,16 +82,18 @@ export default function App() {
             SplashScreen.hideAsync();
         } else {
         }
-        
+
     }, [fontsLoaded]);
 
     return (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <AuthProvider>
                 <ThemeProvider>
-                    <NavigationContainer>
-                        <RootNavigator />
-                    </NavigationContainer>
+                    <ActiveWorkoutProvider>
+                        <NavigationContainer>
+                            <RootNavigator />
+                        </NavigationContainer>
+                    </ActiveWorkoutProvider>
                 </ThemeProvider>
             </AuthProvider>
         </SafeAreaProvider>

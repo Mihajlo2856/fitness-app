@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from 'react-native';
+import { View, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Screen } from '@/components/common/Screen';
-import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import GymIllustration from '@/components/GymIllustration';
 import Write from '@/components/common/Write';
-import { Image } from 'react-native';
 import Divider from '@/components/common/Divider';
 
 export default function LoginScreen({ navigation }: any) {
@@ -18,6 +14,10 @@ export default function LoginScreen({ navigation }: any) {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const { signIn } = useAuth();
+    const adminPayload = {
+        email: "admin@admin.com",
+        password: "admin"
+    }
 
     const handleLogin = async () => {
         if (!email || !password) {
@@ -91,6 +91,10 @@ export default function LoginScreen({ navigation }: any) {
                     {/* Login Button */}
                     <Button onPress={handleLogin} fullWidth variant='outline' disabled={loading}>
                         <Write style={{ color: colors.primary }}>{loading ? 'Logging in...' : 'Log In'}</Write>
+                    </Button>
+                    <Divider></Divider>
+                    <Button onPress={() => signIn(adminPayload.email, adminPayload.password)} fullWidth variant='danger' disabled={loading}>
+                        <Write>{loading ? 'Logging in...' : 'ADMIN LOGIN'}</Write>
                     </Button>
 
                     {/* Register Link */}

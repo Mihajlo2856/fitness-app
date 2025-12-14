@@ -1,11 +1,10 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../contexts/ThemeContext';
-import colors from "tailwindcss/colors";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Write from './common/Write';
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export function ProfileButton() {
     const navigation = useNavigation();
@@ -21,17 +20,12 @@ export function ProfileButton() {
         <TouchableOpacity
             style={[
                 {
-                    backgroundColor: colors.surface,
-                    borderColor: colors.primary, // or colors.primary, whatever you want
                     position: 'absolute',
-                    top: insets.top + 10,
+                    top: insets.top + 4,
                     right: 20,
                     width: 42,
                     height: 42,
-                    borderWidth: 1,
                     borderRadius: 20,
-                    justifyContent: 'center',
-                    alignItems: 'center',
                     zIndex: 1000,
                     shadowColor: '#000',
                     shadowOffset: {
@@ -41,14 +35,13 @@ export function ProfileButton() {
                     shadowOpacity: 0.15,
                     shadowRadius: 4,
                     elevation: 5,
+                    overflow: 'hidden', // Important for gradient clipping
                 }
             ]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Write>
-                A
-            </Write>
+                <Ionicons name="cog-outline" color={colors.text} size={28} />
         </TouchableOpacity>
     );
-}
+    }

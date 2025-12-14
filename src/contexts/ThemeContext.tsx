@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { colors, shadows, dividers } from '../constants/tokens';
+import { log } from 'console';
 
 type ColorScheme = 'light' | 'dark';
 
@@ -16,32 +17,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const systemColorScheme = useColorScheme();
-
     const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
         return systemColorScheme === 'dark' ? 'dark' : 'light';
     });
+    const osStatusBar = colorScheme === 'dark';
 
     useEffect(() => {
         if (systemColorScheme) {
-            setColorScheme(systemColorScheme as ColorScheme);
+            setColorScheme(systemColorScheme);
         }
     }, [systemColorScheme]);
-
-    const osStatusBar = colorScheme === 'dark';
-    
-    // Dynamic theme selection
-    const theme = {
-        colors: colors[colorScheme],
-        dividers: dividers[colorScheme],
-    };
 
     return (
         <ThemeContext.Provider
             value={{
                 colorScheme,
-                colors: theme.colors,
+                colors: colors[colorScheme],
                 shadows,
-                dividers: theme.dividers,
+                dividers: dividers[colorScheme],
                 osStatusBar,
             }}
         >

@@ -34,7 +34,8 @@ export interface TemplateExercise {
     rest_seconds: number;
     notes?: string;
     created_at: string;
-    exercise?: Exercise; // Joined data
+    exercises?: Exercise;
+    technique: 'normal' | 'superset' | 'hell_set' | 'drop_set' | 'custom';
 }
 
 export interface WorkoutSession {
@@ -87,22 +88,4 @@ export interface BodyMeasurement {
     thighs?: number;
     notes?: string;
     created_at: string;
-}
-
-export interface WeeklyPlan {
-    id: string;
-    user_id: string;
-    name: string;
-    is_active: boolean;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface PlannedWorkout {
-    id: string;
-    plan_id: string;
-    template_id?: string;
-    day_of_week: number; // 0 = Sunday, 6 = Saturday
-    created_at: string;
-    template?: WorkoutTemplate; // Joined data
 }
